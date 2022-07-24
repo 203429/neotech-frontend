@@ -1,0 +1,216 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;800&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    list-style: none;
+}
+
+body {
+    background: #00C9FF;
+    /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #92FE9D, #00C9FF);
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #92FE9D, #00C9FF);
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+}
+
+.form-boxUser {
+    background: #F09819;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #EDDE5D, #F09819);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #EDDE5D, #F09819); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+    height: max-content;
+    top: 8%;
+    text-align: center;
+    padding: 2em;
+    position: absolute;
+}
+
+#title-user {
+    color: #5C62EF;
+    font-weight: 800;
+    margin-bottom: 1em;
+}
+
+.labelUser {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 0.5em;
+    margin-left: 10%;
+    text-align: left;
+}
+
+#user {
+    background: url('../img/user.png');
+    background-size: 2em;
+    background-position: 0.3em 0.45em;
+    background-repeat: no-repeat;
+    padding-left: 2.8em;
+    background-color: white;
+}
+
+#nombre {
+    background: url('../img/user.png');
+    background-size: 2em;
+    background-position: 0.3em 0.45em;
+    background-repeat: no-repeat;
+    padding-left: 2.8em;
+}
+
+#apellido {
+    background: url('../img/user.png');
+    background-size: 2em;
+    background-position: 0.3em 0.45em;
+    background-repeat: no-repeat;
+    padding-left: 2.8em;
+}
+
+#email {
+    background: url('../img/mail.png');
+    background-size: 2em;
+    background-position: 0.3em 0.45em;
+    background-repeat: no-repeat;
+    padding-left: 2.8em;
+}
+
+#passw {
+    background: url('../img/password.png');
+    background-size: 2.25em;
+    background-position: 0.2em 0.3em;
+    background-repeat: no-repeat;
+    padding-left: 2.8em;
+    
+    background-color: white;
+}
+
+#passw1 {
+    background: url('../img/password.png');
+    background-size: 2.25em;
+    background-position: 0.2em 0.3em;
+    background-repeat: no-repeat;
+    padding-left: 2.8em;
+}
+
+#passw2 {
+    background: url('../img/password.png');
+    background-size: 2.25em;
+    background-position: 0.2em 0.3em;
+    background-repeat: no-repeat;
+    padding-left: 2.8em;
+}
+
+.inputUser {
+    border: 1px solid #000000;
+    border-radius: 0.3em;
+    display: inline-block;
+    margin-bottom: 2.5em;
+    width: 80%;
+    height: 3em;
+    outline: none;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+}
+
+.inputUser:focus {
+    border: 0.20em solid #000000;
+}
+
+.buttonUser {
+    background-color: #8BC6EC;
+    background-image: linear-gradient(135deg, #8BC6EC 0%, #9599E2 100%);
+
+    border: none;
+    border-radius: 10px 10px;
+    color: rgb(0, 0, 0);
+    cursor: pointer;
+    display: block;
+    font-size: 1.05rem;
+
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 0.65em;
+
+    height: 3.5em;
+    width: 80%;
+    padding: 0.5em 0.5em;
+}
+
+.linkUS {
+    color: #5C62EF;
+    text-decoration: none;
+}
+
+.linkUS:hover {
+    color: #43468b;
+}
+
+#selectUser {
+    width: 80%;
+    margin-bottom: 2.5em;
+}
+
+
+@media screen and (min-width: 751px) {
+    #title-user {
+        font-size: 2.8em;
+    }
+
+    .inputUser {
+        font-size: 1.1em;
+    }
+
+    .buttonUser {
+        font-size: 1rem;
+    }
+
+    .labelUser {
+        font-size: 1rem;
+    }
+
+    .linkUS {
+        font-size: 1rem;
+    }
+
+    .form-boxUser {
+        left: 30%;
+        right: 30%;
+        width: 40%;
+        border-radius: 85px 1px;
+        box-shadow: 2px 2px 5px 2px #b6b6b6;
+    }
+}
+
+@media screen and (max-width: 750px) {
+    body {
+        background-color: #ffffff
+    }
+
+    #title-user {
+        font-size: 2.2rem;
+    }
+
+    .inputUser {
+        font-size: 0.9rem;
+    }
+
+    .buttonUser {
+        font-size: 0.8rem;
+    }
+
+    .labelUser {
+        font-size: 0.75rem;
+    }
+
+    .linkUS {
+        font-size: 0.75rem;
+    }
+
+    .form-boxUser {
+        width: 100%;
+        
+    }
+}

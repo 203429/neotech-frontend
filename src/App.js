@@ -1,9 +1,10 @@
 import { BrowserRouter as Router, Route, NavLink, Routes, BrowserRouter } from "react-router-dom";
 import Login from './components/login'
-import Index from './components/index'
+import Valores from './components/valores'
 import Valores_h from "./components/valores_h";
 import Riego_h from "./components/riego_h";
 import Reporte from "./components/reporte";
+import Menu from "./components/menu";
 
 function App() {
     return (
@@ -11,10 +12,11 @@ function App() {
             <BrowserRouter>
                 <Routes>
                     <Route exact path="/" element={<Login />} />
-                    <Route exact path="/index" element={<Index />} />
+                    <Route exact path="/valores" element={<Valores />} />
                     <Route exact path="/historial_valores" element={<Valores_h />} />
                     <Route exact path="/historial_riego" element={<Riego_h />} />
                     <Route exact path="/reporte" element={<Reporte />} />
+                    <Route exact path="/menu" element={<Menu />} />
                 </Routes>
             </BrowserRouter>
         </>

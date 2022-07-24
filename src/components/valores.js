@@ -5,11 +5,12 @@ import '../styles/Main.css'
 import Menu from '../img/menu.png'
 import toast, { Toaster } from 'react-hot-toast';
 
-class Valores_h extends Component {
+class Valores extends Component {
     constructor(props) {
         super(props)
         this.state = {
             valores: [],
+            fecha: "",
         }
         this.splitText = this.splitText.bind(this);
     }
@@ -23,7 +24,8 @@ class Valores_h extends Component {
                 },
             })
             .then(res => {
-                this.setState({ valores: res.data.pay_load });
+                this.setState({ valores: res.data.pay_load[res.data.pay_load.length - 1] });
+                this.setState({ fecha: res.data.pay_load[res.data.pay_load.length - 1].fecha });
             })
             .catch(error => {
                 console.log(error.response);
@@ -42,7 +44,7 @@ class Valores_h extends Component {
     splitText(f) {
         let fecha = f
         let x = fecha.split(".");
-        let result = x[0].replace("T", " ");
+        let result = x[0].replace("T"," ");
         return (result)
     }
 
@@ -72,10 +74,10 @@ class Valores_h extends Component {
                     <button className="buttonMain" onClick={this.ocultar_nav} id="buttonNav">Salir</button>
                 </div>
 
-                <h2 id="titleBig">Historial de Valores</h2>
+                <h2 id="titleBig">Valores Actuales</h2>
                 <div className="container">
                     <div id="data-categories">
-                        <h1 className="title" id="title-table">Ultimos registros</h1>
+                        <h1 className="title" id="title-table">Actual</h1>
                         <table id="table">
                             <thead>
                                 <tr>
@@ -87,16 +89,11 @@ class Valores_h extends Component {
                                 </tr>
                             </thead>
                             <tbody>
-                                {
-                                    this.state.valores.map
-                                        (valores => <tr key={valores.id}>
-                                            <td>{valores.temp_ambiente}</td>
-                                            <td>{valores.humedad_ambiente}</td>
-                                            <td>{valores.humedad_suelo}</td>
-                                            <td>{valores.nivel_agua}</td>
-                                            <td>{this.splitText(valores.fecha)}</td>
-                                        </tr>)
-                                }
+                                <td>{this.state.valores.temp_ambiente}</td>
+                                <td>{this.state.valores.humedad_ambiente}</td>
+                                <td>{this.state.valores.humedad_suelo}</td>
+                                <td>{this.state.valores.nivel_agua}</td>
+                                <td>{this.splitText(this.state.fecha)}</td>
                             </tbody>
                         </table>
                     </div>
@@ -108,4 +105,4 @@ class Valores_h extends Component {
     }
 }
 
-export default Valores_h;
+export default Valores;

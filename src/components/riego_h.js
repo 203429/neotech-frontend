@@ -1,13 +1,17 @@
 import axios from 'axios';
 import { Component } from 'react';
 import { NavLink } from "react-router-dom";
+import '../styles/Main.css'
+import Menu from '../img/menu.png'
+import toast, { Toaster } from 'react-hot-toast';
 
-class Riego_h extends Component{
+class Riego_h extends Component {
     constructor(props) {
         super(props)
         this.state = {
             valores: [],
         }
+        this.splitText = this.splitText.bind(this);
     }
 
     componentDidMount() {
@@ -19,55 +23,80 @@ class Riego_h extends Component{
                 },
             })
             .then(res => {
-                this.setState({ valores: res.data.pay_load});
+                this.setState({ valores: res.data.pay_load });
             })
             .catch(error => {
                 console.log(error.response);
             })
     }
 
+    mostrar_nav() {
+        document.getElementById('navMain').style.display = "block"
+        document.getElementById('background').style.display = "block"
+    }
+    ocultar_nav() {
+        document.getElementById('navMain').style.display = "none"
+        document.getElementById('background').style.display = "none"
+    }
+
+    splitText(f) {
+        let fecha = f
+        let x = fecha.split(".");
+        let result = x[0].replace("T", " ");
+        return (result)
+    }
+
     render() {
         return (
             <body>
-                <nav>
-                    <h1>Lechuga Software</h1>
+                <div><Toaster
+                    position="bottom-left"
+                    reverseOrder={false} />
+                </div>
 
+                <div id="background" onClick={this.ocultar_nav}></div>
+                <header id="headerMain">
                     <div>
-                        <ul>
-                            <li>
-                                <NavLink to="/index">Valores actuales</NavLink>
-                            </li>
-                            <li>
-                                <NavLink to="/historial_valores">Historial de Valores</NavLink>
-                            </li>
-                            <li>
-                                <NavLink to="/historial_riego">Historial de Riego</NavLink>
-                            </li>
-                            <li>
-                                <NavLink to="/reporte">Reporte</NavLink>
-                            </li>
-                        </ul>
+                        <NavLink className="linkNav" to="/menu">
+                            <h3 id="titleMain">NeoTech</h3>
+                        </NavLink>
                     </div>
-                </nav>
+                    <img onClick={this.mostrar_nav} src={Menu} id="menuImg" alt="error" />
+                </header>
 
-                <h1>Historial de Riego</h1>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Tipo de Riego</th>
-                            <th>Fecha</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {
-                            this.state.valores.map
-                            (valores => <tr key={valores.id}>
-                                <td>{valores.tipo}</td>
-                                <td>{valores.fecha}</td>
-                            </tr>)
-                        }
-                    </tbody>
-                </table>
+                <div id="navMain">
+                    <span className="navText"><NavLink className="linkNav" to="/valores">Valores actuales</NavLink></span>
+                    <span className="navText"><NavLink className="linkNav" to="/historial_valores">Historial de valores</NavLink></span>
+                    <span className="navText"><NavLink className="linkNav" to="/historial_riego">Historial de riego</NavLink></span>
+                    <span className="navText"><NavLink className="linkNav" to="/reporte">Reportes</NavLink></span>
+                    <button className="buttonMain" onClick={this.ocultar_nav} id="buttonNav">Salir</button>
+                </div>
+
+                <h2 id="titleBig">Historial de Riego</h2>
+                <div className="container">
+                    <div id="data-categories">
+                        <h1 className="title" id="title-table">Ultimos registros</h1>
+                        <table id="table">
+                            <thead>
+                                <tr>
+                                    <th>Tipo de riego</th>
+                                    <th>Fecha</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {
+                                    this.state.valores.map
+                                        (valores => <tr key={valores.id}>
+                                            <td>{valores.tipo}</td>
+                                            <td>{this.splitText(valores.fecha)}</td>
+                                        </tr>)
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+
             </body>
         );
     }
