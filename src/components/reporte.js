@@ -28,9 +28,10 @@ class Reporte extends Component {
             media_muestra: 0,
             zc: 0,
             conclusion: 0,
-            tipo_reporte:0,
+            tipo_reporte: null,
         }
         this.reporte = this.reporte.bind(this);
+        this.pdf = this.pdf.bind(this);
     }
 
     componentDidMount() {
@@ -64,9 +65,10 @@ class Reporte extends Component {
     }
 
     reporte() {
-        this.setState({ datos: [], rango: 0, k: 0, amplitud: 0, tabla_c1: [], media: 0, tabla_c2: [], desv_estandar: 0, tam_muestra: 0, datos_muestra: [], media_muestra: 0 });
+        this.setState({ datos: [], rango: 0, k: 0, amplitud: 0, tabla_c1: [], media: 0, tabla_c2: [], desv_estandar: 0, tam_muestra: 0, datos_muestra: [], media_muestra: 0, tipo_reporte:0 });
+        this.setState({ datos: [], rango: 0, k: 0, amplitud: 0, tabla_c1: [], media: 0, tabla_c2: [], desv_estandar: 0, tam_muestra: 0, datos_muestra: [], media_muestra: 0, tipo_reporte:0 });
         let tipo_reporte = document.getElementById("tipo_reporte").value;
-        this.setState({tipo_reporte:tipo_reporte});
+        this.state.tipo_reporte = tipo_reporte;
         let datos = [];
         let poblacion = 0;
         if (tipo_reporte === "1") {
@@ -81,7 +83,8 @@ class Reporte extends Component {
                 datos.push(this.state.humedad_suelo[i]["humedad_suelo"]);
             }
         }
-        this.setState({ poblacion: poblacion });
+        // this.setState({ poblacion: poblacion });
+        this.state.poblacion = poblacion;
         datos.sort(function (a, b) { return a - b });
         this.setState({ datos: datos });
 
@@ -95,7 +98,10 @@ class Reporte extends Component {
         a_temp = a.toFixed(1);
         a = parseFloat(a_temp);
         a = a + 0.1;
-        this.setState({ rango: r, k: k, amplitud: a });
+        // this.setState({ rango: r, k: k, amplitud: a });
+        this.state.rango = r;
+        this.state.k = k;
+        this.state.amplitud = a;
 
         let clase = [], lim_inf = [], lim_sup = [], lim_inf_exa = [], lim_sup_exa = [], marca_clase = [], frec = [], frec_acu = [];
         let uv = 0.1;
@@ -170,7 +176,8 @@ class Reporte extends Component {
         media = media / poblacion;
         let media_temp = media.toFixed(2);
         media = parseFloat(media_temp);
-        this.setState({ media: media });
+        // this.setState({ media: media });
+        this.state.media = media;
 
         let marca_media = [], marca_media2 = [], marca_media2f = [];
         let marca_media_temp, marca_media2_temp, marca_media2f_temp;
@@ -206,21 +213,23 @@ class Reporte extends Component {
         desv_estandar = Math.sqrt(desv_estandar);
         let desv_estandar_temp = desv_estandar.toFixed(2);
         desv_estandar = parseFloat(desv_estandar_temp);
-        this.setState({ desv_estandar: desv_estandar });
+        // this.setState({ desv_estandar: desv_estandar });
+        this.state.desv_estandar = desv_estandar;
 
         let z1 = 1.96;
         let z2 = Math.pow(z1, 2);
         let error = Math.pow(0.05, 2);
         let tamanio_muestra = (z2 * 0.5 * 0.5 * poblacion) / ((error * (poblacion - 1) + z2 * 0.5 * 0.5));
         tamanio_muestra = Math.round(tamanio_muestra);
-        this.setState({ tam_muestra: tamanio_muestra });
+        // this.setState({ tam_muestra: tamanio_muestra });
+        this.state.tam_muestra = tamanio_muestra;
 
         let cant_temp, cantidad;
         cantidad = poblacion / tamanio_muestra;
         cant_temp = cantidad.toFixed(2);
         cantidad = parseFloat(cant_temp);
 
-        for (let i = poblacion - 1 ; i >= 0; i = i - cantidad) {
+        for (let i = poblacion - 1; i >= 0; i = i - cantidad) {
             if (tipo_reporte === "1") {
                 this.state.datos_muestra.push(this.state.temperatura_ambiente[i]["temp_ambiente"]);
             }
@@ -235,25 +244,90 @@ class Reporte extends Component {
 
         let media_muestra_temp = media_muestra.toFixed(2);
         media_muestra = parseFloat(media_muestra_temp);
-        this.setState({ media_muestra: media_muestra });
+        // this.setState({ media_muestra: media_muestra });
+        this.state.media_muestra = media_muestra;
         let zc = 0, conclusion = 0;
-        zc = ((this.state.media.muestra - this.state.media) / (this.state.desv_estandar / Math.sqrt(poblacion)));
-        if(zc < -1.96 || zc > 1.96){
+        zc = ((this.state.media_muestra - this.state.media) / (this.state.desv_estandar / Math.sqrt(poblacion)));
+        if (zc < -1.96 || zc > 1.96) {
             conclusion = 1;
-        }else{
+        } else {
             conclusion = 2;
         }
-        this.setState({conclusion:conclusion});
-        this.setState({zc:zc});
-        if(media !== 0){
-            alert("Reporte generado");
-        }else{
+        // this.setState({ conclusion: conclusion });
+        // this.setState({ zc: zc });
+        let zc_temp = zc.toFixed(3);
+        zc = parseFloat(zc_temp);
+        this.state.conclusion = conclusion;
+        this.state.zc = zc;
+        if (media !== 0) {
+            this.pdf();
+        } else {
             alert("Error al generar el reporte");
         }
     }
 
     pdf(){
-        
+        var columnas = [["Clase", "L. Inferior", "L.Superior", "L.Inf Exacto", "L.Sup Exacto","Marca de Clase", "Frec. Absoluta", "Frec. Acumulada"]];
+        let content = {
+            startY: 280,
+            pageBreak: 'auto',
+            head: columnas,
+            body: this.state.tabla_c1
+        }
+
+        var columnas1 = [["Clase", "Frecuencia", "Marca de Clase", "|Media - M. Clase|", "|Media - M. Clase|^2","|Media - M. Clase|^2*frec"]];
+        let content1 = {
+            startY: 350,
+            pageBreak: 'auto',
+            head: columnas1,
+            body: this.state.tabla_c2
+        }
+
+        let hip_nula, hip_alt, aceptacion, conclusion, concP;
+        hip_nula = "La lechuga posee una humedad/temperatura de " + this.state.media.toString() + " °C/% en promedio.";
+
+        hip_alt = "La lechuga posee una humedad/temperatura diferente de " + this.state.media.toString() + " °C/% en promedio.";
+
+        if(this.state.conclusion===1){
+            aceptacion = "está en zona de rechazo";
+            conclusion = "existe evidencia para rechazar la hipótesis nula y aceptar la hipótesis alternativa.";
+            concP = hip_alt;
+        }
+        if(this.state.conclusion===2){
+            aceptacion = "está en zona de aceptación";
+            conclusion = "existe evidencia para aceptar la hipótesis nula y rechazar la hipótesis alternativa.";
+            concP = hip_nula;
+        }
+
+        const doc = new jsPDF();
+
+        let img = new Image();
+        img.src = require('../img/grafico.png');
+
+        doc.setFontSize(12);
+        doc.text("REPORTE ESTADISTICO",15,20);
+        doc.text("Población: " + this.state.poblacion.toString(),15,30);
+        doc.text("Rango: " + this.state.rango.toString(),15,35);
+        doc.text("Amplitud: " + this.state.amplitud.toString(),15,40);
+        doc.text("K: " + this.state.k.toString(),15,45);
+        doc.text("Media: " + this.state.media.toString(),15,50);
+        doc.text("Desviación Estándar: " + this.state.desv_estandar.toString(),15,55);
+        doc.text("Tamaño de la Muestra: " + this.state.tam_muestra.toString(),15,60);
+        doc.text("Media de la muestra: " + this.state.media_muestra.toString(),15,65);
+        doc.text("H. nula: " + hip_nula,15,70);
+        doc.text("H. alternativa: " + hip_alt,15,75);
+        doc.text("N. de Significancia: 0.05 " ,15,80);
+        doc.text("N. de Confianza: 0.95 " ,15,85);
+        doc.text("Valor de Zc: " + this.state.zc.toString() ,15,90);
+        doc.text("Conclusión est.: El valor de Zc es de "+this.state.zc.toString()+" por lo que "+aceptacion+". Esto permite" , 15, 95);
+        doc.text("llegar a la conclusión de que tras realizar un analisis estadistico con un 95% de confianza" , 15, 100);
+        doc.text(conclusion , 15, 105);
+        doc.text("Conclusión práctica: "+concP , 15, 110);
+        doc.addImage(img, "PNG",30,115,140,70)
+        doc.autoTable(content);
+        doc.autoTable(content1);
+
+        doc.save("REPORTE ESTADÍSTICO")
     }
 
     mostrar_nav() {
@@ -296,12 +370,12 @@ class Reporte extends Component {
                     <div class="forms-card3">
                         <h1 class="title2">Elegir opción</h1>
                         <label class="labelReport">Reporte datos sensados:</label>
-                        <select name="selection" id="tipo_reporte" placeholder="Opcion:" onChange={this.reporte}>
+                        <select name="selection" id="tipo_reporte" placeholder="Opcion:">
                             <option value="0" selected disabled>Tipo de reporte</option>
                             <option value="1">Temperatura Ambiente</option>
                             <option value="2">Humedad Suelo</option>
                         </select>
-                        <button class="buttonReport" id="reporte">Generar PDF</button>
+                        <button class="buttonReport" id="reporte" onClick={this.reporte}>Generar PDF</button>
                     </div>
                 </div>
                 <img src={ImgReporte} alt="error" id="imgReport" />
