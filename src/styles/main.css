@@ -1,16 +1,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;800&display=swap');
 
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
     list-style: none;
 }
-body{
+
+body {
     background-color: #fcfcfc;
 }
-#background{
+
+#background {
     display: none;
     background-color: black;
     height: 100vh;
@@ -21,35 +23,38 @@ body{
     opacity: 0.3;
     z-index: 5;
 }
-#headerMain{
+
+#headerMain {
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
     justify-content: space-between;
-    
+
     position: absolute;
     left: 10%;
     right: 10%;
     top: 5%;
-    width: 80%;   
+    width: 80%;
 }
-#menuImg{
+
+#menuImg {
     height: 1.2em;
 }
-#navMain{
+
+#navMain {
     background-color: #f7f7f7;
     display: flex;
     display: none;
     flex-direction: column;
     flex-wrap: nowrap;
     top: 0em;
-    
+
     height: 100vh;
     left: 60%;
     padding-left: 1em;
     padding-right: 1em;
     padding-top: 6em;
-    
+
 
     position: fixed;
     text-align: center;
@@ -58,89 +63,101 @@ body{
     width: 40%;
     z-index: 10;
 }
-.navText{
+
+.navText {
     display: block;
     margin-bottom: 1.2em;
 }
 
-#titleMain{
+#titleMain {
     color: #5C62EF;
     font-size: 1.65em;
     margin-top: -0.35em;
 }
-.linkNav{
+
+.linkNav {
     color: black;
     font-weight: 400;
     font-size: 1.1em;
     padding-top: 0.1em;
     text-decoration: none;
 }
-.linkNav:hover{
-    color: #5055da;    
+
+.linkNav:hover {
+    color: #5055da;
 }
+
 .buttonMain {
     display: block;
     background-color: #5C62EF;
     border: none;
     border-radius: 0.3em;
     color: white;
-    cursor: pointer;   
+    cursor: pointer;
 }
-#buttonNav{
+
+#buttonNav {
     margin-top: 2em;
     margin-left: auto;
     margin-right: auto;
 
     height: 2.6em;
-    
+
     width: 7em;
-    padding: 0.5em 0.5em 0.5em 0.5em;  
+    padding: 0.5em 0.5em 0.5em 0.5em;
 }
-.buttonMain:hover{
+
+.buttonMain:hover {
     background-color: #5055da;
 }
 
-.container{
+.container {
     display: block;
     margin-top: 2em;
     margin-left: auto;
     margin-right: auto;
     width: 80%;
 }
-.container2{
+
+.container2 {
     display: block;
     margin-top: 2em;
     margin-left: auto;
     margin-right: auto;
     width: 80%;
 }
-#titleBig{
+
+#titleBig {
     font-weight: 500;
     font-size: 1.35rem;
     margin-top: 6em;
     margin-left: 10%;
 }
 
-.title{
+.title {
     font-size: 1.3em;
     font-weight: 500;
 }
-.title2{
+
+.title2 {
     display: block;
     margin-bottom: 0.5em;
     font-size: 1.4em;
     font-weight: 500;
 }
-#title-form{
+
+#title-form {
     display: block;
     margin-bottom: 0.5em;
     font-size: 1.4em;
     display: none;
 }
-.forms-card2{
+
+.forms-card2 {
     margin-bottom: 8em;
 }
-.formLabel{
+
+.formLabel {
     display: block;
     font-size: 1.1em;
     font-weight: 400;
@@ -148,9 +165,9 @@ body{
     margin-top: 0.75em;
 }
 
-select{
+select {
     border-radius: 0.4em;
-    display: inline-block; 
+    display: inline-block;
     font-size: 1rem;
     height: 2.8em;
     margin-bottom: 1.2em;
@@ -162,7 +179,7 @@ select{
     transition: 0.5s;
 }
 
-select:hover{
+select:hover {
     border: 0.20em solid #5C62EF;
 }
 
@@ -172,36 +189,45 @@ select:hover{
     position: relative;
     padding-top: 1.5rem;
 }
-.input + .input {
+
+.input+.input {
     margin-top: 1.5rem;
 }
+
 .input-label {
     color: #8597a3;
     position: absolute;
     top: 1.5rem;
     transition: 0.25s ease;
 }
+
 .input-fieldMain {
     border: 0;
     z-index: 1;
     background-color: transparent;
     border-bottom: 2px solid #eee;
-    
+
     font-size: 1.125rem;
     padding: 0.25rem 0;
     margin-bottom: 0.8em;
 }
-.input-fieldMain:focus, .input-fieldMain:valid {
+
+.input-fieldMain:focus,
+.input-fieldMain:valid {
     outline: 0;
     border-bottom-color: #5C62EF;
 }
-.input-fieldMain:focus + .input-label, .input-fieldMain:valid + .input-label {
+
+.input-fieldMain:focus+.input-label,
+.input-fieldMain:valid+.input-label {
     color: #5C62EF;
     transform: translateY(-1.5rem);
 }
+
 .action {
     margin-top: 1.8rem;
 }
+
 .action-button {
     display: block;
     margin: auto;
@@ -215,57 +241,60 @@ select:hover{
     color: #fff;
     border: 0;
 }
+
 .action-button:focus {
     outline: 0;
 }
 
-#data-categories{
+#data-categories {
     margin-top: 6em;
 }
 
-table{
+table {
     margin-top: 1em;
-    border-collapse:collapse;
-    width:100%;
+    border-collapse: collapse;
+    width: 100%;
     margin-bottom: 3em;
 }
-  
-#table{
+
+#table {
     border-radius: 1.4em;
 }
 
-thead tr th{
-    color:rgb(0, 0, 0);
+thead tr th {
+    color: rgb(0, 0, 0);
     font-weight: 500;
 }
-  
-  th,td{
-    text-align:center;
-    padding:5px 0;
-}
-  
-  tbody tr:nth-child(even){
-    background:#ECF0F1;
-  }
-  
-tbody tr:hover{
-    background:#5C62EF;
-    color:#ffffff;
-}
-  
-.fixed{
-    top:0;
-    position:fixed;
-    width:auto;
-    display:none;
-    border:none;
+
+th,
+td {
+    text-align: center;
+    padding: 5px 0;
 }
 
-.labelReport{
+tbody tr:nth-child(even) {
+    background: #ECF0F1;
+}
+
+tbody tr:hover {
+    background: #5C62EF;
+    color: #ffffff;
+}
+
+.fixed {
+    top: 0;
+    position: fixed;
+    width: auto;
+    display: none;
+    border: none;
+}
+
+.labelReport {
     display: block;
     font-weight: 500;
 }
-.buttonReport{
+
+.buttonReport {
     background-color: #5C62EF;
     border-radius: 0.3em;
     color: #fff;
@@ -274,12 +303,14 @@ tbody tr:hover{
     margin-bottom: 1.8em;
     margin-top: 0.1em;
     width: 50%;
-    height: 2.5em ;
+    height: 2.5em;
 }
-#imgReport{
+
+#imgReport {
     display: none;
 }
-#textReport{
+
+#textReport {
     background-color: rgb(245, 245, 245);
     font-size: 0.8rem;
     height: 7em;
@@ -293,18 +324,21 @@ tbody tr:hover{
     width: 100%;
 }
 
-@media screen and (min-width: 740px){
-    #navMain{
+@media screen and (min-width: 740px) {
+    #navMain {
         left: 70%;
         width: 30%;
     }
-    #menuImg{
+
+    #menuImg {
         height: 1.65em;
     }
-    #titleMain{
+
+    #titleMain {
         font-size: 2em;
     }
-    .forms-card3{
+
+    .forms-card3 {
         display: flex;
         flex-direction: column;
         width: 14.75em;
@@ -314,17 +348,20 @@ tbody tr:hover{
         padding: 1.4rem 1.5rem;
         margin-bottom: 0;
     }
-    .buttonReport{
+
+    .buttonReport {
         width: 65%;
     }
-    #imgReport{
+
+    #imgReport {
         display: block;
         position: absolute;
         left: 44%;
         top: 10.2em;
         width: 25em;
     }
-    #textReport{
+
+    #textReport {
         position: relative;
         background-color: transparent;
         padding: 0;
@@ -338,46 +375,54 @@ tbody tr:hover{
         text-align: left;
         margin-top: 2.5em;
     }
-    
-    
+
+
 }
 
-@media screen and (min-width: 1000px){
-    #navMain{
+@media screen and (min-width: 1000px) {
+    #navMain {
         left: 75%;
         width: 25%;
 
     }
-    .container{
+
+    .container {
         width: 70%;
     }
-    .container2{
+
+    .container2 {
         width: 70%;
         display: flex;
         flex-direction: row;
         justify-content: space-between;
     }
-    #titleBig{
+
+    #titleBig {
         margin-top: 4em;
         margin-left: 15%;
         font-size: 1.6em;
     }
-    #headerMain{
+
+    #headerMain {
         left: 15%;
         right: 15%;
-        width: 70%;  
+        width: 70%;
     }
-    #menuImg{
+
+    #menuImg {
         height: 1.85em;
     }
-    #titleMain{
+
+    #titleMain {
         font-size: 2.25em;
     }
-    #title-form{
+
+    #title-form {
         display: block;
         font-size: 1.25em;
     }
-    .forms-card{
+
+    .forms-card {
         position: absolute;
         top: 18%;
         right: 15%;
@@ -389,7 +434,8 @@ tbody tr:hover{
         box-shadow: 0 8px 20px 0 rgba(153, 153, 153, .25);
         padding: 1.4rem 1.5rem;
     }
-    .forms-card2{
+
+    .forms-card2 {
         display: flex;
         flex-direction: column;
         width: 15.8em;
@@ -399,7 +445,8 @@ tbody tr:hover{
         padding: 1.4rem 1.5rem;
         margin-bottom: 0;
     }
-    #data-categories{
+
+    #data-categories {
         position: absolute;
         top: 12%;
         left: 15%;
@@ -412,45 +459,55 @@ tbody tr:hover{
         overflow-y: scroll;
     }
 
-    #imgReport{
+    #imgReport {
         left: 42%;
         top: 9em;
         width: 29.5em;
     }
-    #textReport{
+
+    #textReport {
         font-size: 0.9rem;
         width: 70%;
     }
-    
+
 }
-@media screen and (min-width: 1280px){
-    #navMain{
+
+@media screen and (min-width: 1280px) {
+    #navMain {
         left: 82%;
         width: 18%;
     }
-    #menuImg{
+
+    #menuImg {
         height: 1.9em;
         width: 2.6em;
     }
-    #titleMain{
+
+    #titleMain {
         font-size: 2.35em;
     }
-    #titleBig{
+
+    #titleBig {
         margin-left: 15%;
     }
-    .forms-card{
+
+    .forms-card {
         width: 18em;
     }
-    .forms-card2{
+
+    .forms-card2 {
         width: 20.5em;
     }
-    .forms-card3{
+
+    .forms-card3 {
         margin-top: 1em;
     }
-    #data-categories{
+
+    #data-categories {
         width: 70%;
     }
-    #imgReport{
+
+    #imgReport {
         left: 40%;
         top: 5.5em;
         width: 35em;
@@ -477,3 +534,18 @@ tbody tr:hover{
     background-color: #555;
 }
 
+.forms-card4 {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    background-color: #fcfcfc;
+    border-radius: 0.8em;
+    box-shadow: 0 8px 20px 0 rgba(153, 153, 153, .25);
+    padding: 1.4rem 1.5rem;
+    margin-bottom: 0;
+}
+
+.title3{
+    font-size: 20px;
+    font-weight: 500;
+}
