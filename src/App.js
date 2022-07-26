@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Route, NavLink, Routes, BrowserRouter } from "react-router-dom";
+import { BrowserRouter as Router, Route, NavLink, Routes, BrowserRouter, HashRouter } from "react-router-dom";
 import Login from './components/login'
 import Valores from './components/valores'
 import Valores_h from "./components/valores_h";

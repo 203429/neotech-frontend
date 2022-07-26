@@ -20,7 +20,7 @@ function Login() {
         }
 
         axios
-            .post("http://127.0.0.1:8000/neotech/login", post_data, request_options)
+            .post("http://192.168.198.18:80/neotech/login", post_data, request_options)
             .then(response => {
                 localStorage.setItem('token', response.data.token);
                 navigate('/menu', { replace: true });

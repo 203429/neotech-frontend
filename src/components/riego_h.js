@@ -16,7 +16,7 @@ class Riego_h extends Component {
 
     componentDidMount() {
         axios
-            .get("http://127.0.0.1:8000/neotech/riego", {
+            .get("http://192.168.198.18:80/neotech/riego", {
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': 'Token ' + localStorage.getItem('token'),

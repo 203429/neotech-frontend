@@ -36,7 +36,7 @@ class Reporte extends Component {
 
     componentDidMount() {
         axios
-            .get("http://127.0.0.1:8000/neotech/valores/ambiente", {
+            .get("http://192.168.198.18:80/neotech/valores/ambiente", {
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': 'Token ' + localStorage.getItem('token'),
@@ -50,7 +50,7 @@ class Reporte extends Component {
             })
 
         axios
-            .get("http://127.0.0.1:8000/neotech/valores/suelo", {
+            .get("http://192.168.198.18:80/neotech/valores/suelo", {
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': 'Token ' + localStorage.getItem('token'),

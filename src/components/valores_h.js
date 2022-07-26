@@ -16,7 +16,7 @@ class Valores_h extends Component {
 
     componentDidMount() {
         axios
-            .get("http://127.0.0.1:8000/neotech/valores", {
+            .get("http://192.168.198.18:80/neotech/valores", {
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': 'Token ' + localStorage.getItem('token'),
